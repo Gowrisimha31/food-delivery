@@ -1,0 +1,46 @@
+{
+  "case": 20,
+  "scenario": "no_fault",
+  "expected_category": null,
+  "expected_severity": null,
+  "detected": true,
+  "seconds_to_detect": 467.6,
+  "evidence": {
+    "detected_at": "2026-10-09T08:23:45.319667+00:00",
+    "window_seconds": 30,
+    "problems": [
+      "Traffic dropped: only 1 requests in 30s"
+    ],
+    "health": {
+      "requests": 1,
+      "server_errors": 0,
+      "client_errors": 0,
+      "server_error_rate": 0.0,
+      "p50_latency_ms": 18.7,
+      "p95_latency_ms": 18.7,
+      "endpoints": {
+        "GET /restaurants": {
+          "requests": 1,
+          "server_errors": 0,
+          "p95_latency_ms": 18.7
+        }
+      }
+    },
+    "top_errors": [],
+    "recent_deployments": [
+      {
+        "time": "2026-10-09T08:15:07.411494+00:00",
+        "message": "Deployment completed",
+        "version": "1.1.0",
+        "change": "Added restaurant discounts"
+      },
+      {
+        "time": "2026-10-09T08:15:27.602534+00:00",
+        "message": "Rollback completed",
+        "version": "1.0.0",
+        "change": null
+      }
+    ],
+    "sample_error_logs": []
+  }
+}

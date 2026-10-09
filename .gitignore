@@ -1,0 +1,18 @@
+# Secrets: NEVER upload these
+.env
+
+# Virtual environment: anyone can recreate it from requirements.txt
+venv/
+
+# Data created while running: local only
+food.db
+logs/
+incidents/
+__pycache__/
+*.pyc
+
+# Throwaway debugging script
+check_gap.py
+
+# Editor settings
+.vscode/

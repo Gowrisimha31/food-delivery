@@ -1,0 +1,9 @@
+{
+  "case": 7,
+  "scenario": "no_fault",
+  "expected_category": null,
+  "expected_severity": null,
+  "detected": false,
+  "seconds_to_detect": null,
+  "evidence": null
+}

@@ -1,0 +1,136 @@
+{
+  "case": 19,
+  "scenario": "bad_deploy",
+  "expected_category": "bad_deployment",
+  "expected_severity": "SEV2",
+  "detected": true,
+  "seconds_to_detect": 20.2,
+  "evidence": {
+    "detected_at": "2026-10-09T08:15:27.582950+00:00",
+    "window_seconds": 30,
+    "problems": [
+      "High server error rate: 5% (3 of 63 requests)"
+    ],
+    "health": {
+      "requests": 63,
+      "server_errors": 3,
+      "client_errors": 1,
+      "server_error_rate": 0.048,
+      "p50_latency_ms": 2.8,
+      "p95_latency_ms": 28.8,
+      "endpoints": {
+        "POST /orders": {
+          "requests": 14,
+          "server_errors": 3,
+          "p95_latency_ms": 39.6
+        },
+        "GET /restaurants/{id}/menu": {
+          "requests": 19,
+          "server_errors": 0,
+          "p95_latency_ms": 5.2
+        },
+        "GET /restaurants": {
+          "requests": 21,
+          "server_errors": 0,
+          "p95_latency_ms": 4.2
+        },
+        "GET /orders/{id}/track": {
+          "requests": 9,
+          "server_errors": 0,
+          "p95_latency_ms": 3.9
+        }
+      }
+    },
+    "top_errors": [
+      {
+        "error": "KeyError: 3",
+        "count": 3
+      }
+    ],
+    "recent_deployments": [
+      {
+        "time": "2026-10-09T08:08:10.687370+00:00",
+        "message": "Deployment completed",
+        "version": "1.1.0",
+        "change": "Added restaurant discounts"
+      },
+      {
+        "time": "2026-10-09T08:08:20.715286+00:00",
+        "message": "Rollback completed",
+        "version": "1.0.0",
+        "change": null
+      },
+      {
+        "time": "2026-10-09T08:09:26.002191+00:00",
+        "message": "Deployment completed",
+        "version": "1.1.0",
+        "change": "Added restaurant discounts"
+      },
+      {
+        "time": "2026-10-09T08:09:51.091040+00:00",
+        "message": "Rollback completed",
+        "version": "1.0.0",
+        "change": null
+      },
+      {
+        "time": "2026-10-09T08:10:26.243376+00:00",
+        "message": "Deployment completed",
+        "version": "1.1.0",
+        "change": "Added restaurant discounts"
+      },
+      {
+        "time": "2026-10-09T08:10:36.248863+00:00",
+        "message": "Rollback completed",
+        "version": "1.0.0",
+        "change": null
+      },
+      {
+        "time": "2026-10-09T08:15:07.411494+00:00",
+        "message": "Deployment completed",
+        "version": "1.1.0",
+        "change": "Added restaurant discounts"
+      }
+    ],
+    "sample_error_logs": [
+      {
+        "timestamp": "2026-10-09T08:15:14.946009+00:00",
+        "level": "ERROR",
+        "service": "food-app",
+        "module": "main",
+        "request_id": "dc81bcf4",
+        "message": "Unhandled error",
+        "method": "POST",
+        "path": "/orders",
+        "status": 500,
+        "duration_ms": 3.4,
+        "error": "ead\n    return await future\n           ^^^^^^^^^^^^\n  File \"C:\\Users\\GOWRI SIMHA\\OneDrive\\Desktop\\food-delivery\\venv\\Lib\\site-packages\\anyio\\_backends\\_asyncio.py\", line 1100, in run\n    result = context.run(func, *args)\n  File \"C:\\Users\\GOWRI SIMHA\\OneDrive\\Desktop\\food-delivery\\venv\\Lib\\site-packages\\fastapi\\telemetry\\_api.py\", line 240, in _run_sync_endpoint\n    return function(**arguments)\n  File \"C:\\Users\\GOWRI SIMHA\\OneDrive\\Desktop\\food-delivery\\orders.py\", line 85, in place_order\n    discount = DISCOUNTS[request.restaurant_id]\n               ~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^\nKeyError: 3"
+      },
+      {
+        "timestamp": "2026-10-09T08:15:23.309910+00:00",
+        "level": "ERROR",
+        "service": "food-app",
+        "module": "main",
+        "request_id": "78f91a4d",
+        "message": "Unhandled error",
+        "method": "POST",
+        "path": "/orders",
+        "status": 500,
+        "duration_ms": 3.4,
+        "error": "ead\n    return await future\n           ^^^^^^^^^^^^\n  File \"C:\\Users\\GOWRI SIMHA\\OneDrive\\Desktop\\food-delivery\\venv\\Lib\\site-packages\\anyio\\_backends\\_asyncio.py\", line 1100, in run\n    result = context.run(func, *args)\n  File \"C:\\Users\\GOWRI SIMHA\\OneDrive\\Desktop\\food-delivery\\venv\\Lib\\site-packages\\fastapi\\telemetry\\_api.py\", line 240, in _run_sync_endpoint\n    return function(**arguments)\n  File \"C:\\Users\\GOWRI SIMHA\\OneDrive\\Desktop\\food-delivery\\orders.py\", line 85, in place_order\n    discount = DISCOUNTS[request.restaurant_id]\n               ~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^\nKeyError: 3"
+      },
+      {
+        "timestamp": "2026-10-09T08:15:25.811793+00:00",
+        "level": "ERROR",
+        "service": "food-app",
+        "module": "main",
+        "request_id": "bcf1a452",
+        "message": "Unhandled error",
+        "method": "POST",
+        "path": "/orders",
+        "status": 500,
+        "duration_ms": 3.6,
+        "error": "ead\n    return await future\n           ^^^^^^^^^^^^\n  File \"C:\\Users\\GOWRI SIMHA\\OneDrive\\Desktop\\food-delivery\\venv\\Lib\\site-packages\\anyio\\_backends\\_asyncio.py\", line 1100, in run\n    result = context.run(func, *args)\n  File \"C:\\Users\\GOWRI SIMHA\\OneDrive\\Desktop\\food-delivery\\venv\\Lib\\site-packages\\fastapi\\telemetry\\_api.py\", line 240, in _run_sync_endpoint\n    return function(**arguments)\n  File \"C:\\Users\\GOWRI SIMHA\\OneDrive\\Desktop\\food-delivery\\orders.py\", line 85, in place_order\n    discount = DISCOUNTS[request.restaurant_id]\n               ~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^\nKeyError: 3"
+      }
+    ]
+  }
+}

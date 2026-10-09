@@ -1,0 +1,100 @@
+{
+  "case": 10,
+  "scenario": "bad_deploy",
+  "expected_category": "bad_deployment",
+  "expected_severity": "SEV2",
+  "detected": true,
+  "seconds_to_detect": 25.2,
+  "evidence": {
+    "detected_at": "2026-10-09T07:47:29.776808+00:00",
+    "window_seconds": 30,
+    "problems": [
+      "High server error rate: 5% (3 of 56 requests)"
+    ],
+    "health": {
+      "requests": 56,
+      "server_errors": 3,
+      "client_errors": 2,
+      "server_error_rate": 0.054,
+      "p50_latency_ms": 3.0,
+      "p95_latency_ms": 26.6,
+      "endpoints": {
+        "GET /restaurants": {
+          "requests": 14,
+          "server_errors": 0,
+          "p95_latency_ms": 4.8
+        },
+        "POST /orders": {
+          "requests": 13,
+          "server_errors": 3,
+          "p95_latency_ms": 32.3
+        },
+        "GET /orders/{id}/track": {
+          "requests": 7,
+          "server_errors": 0,
+          "p95_latency_ms": 3.8
+        },
+        "GET /restaurants/{id}/menu": {
+          "requests": 22,
+          "server_errors": 0,
+          "p95_latency_ms": 4.6
+        }
+      }
+    },
+    "top_errors": [
+      {
+        "error": "KeyError: 3",
+        "count": 3
+      }
+    ],
+    "recent_deployments": [
+      {
+        "time": "2026-10-09T07:47:04.533215+00:00",
+        "message": "Deployment completed",
+        "version": "1.1.0",
+        "change": "Added restaurant discounts"
+      }
+    ],
+    "sample_error_logs": [
+      {
+        "timestamp": "2026-10-09T07:47:12.902225+00:00",
+        "level": "ERROR",
+        "service": "food-app",
+        "module": "main",
+        "request_id": "551641fd",
+        "message": "Unhandled error",
+        "method": "POST",
+        "path": "/orders",
+        "status": 500,
+        "duration_ms": 3.9,
+        "error": "ead\n    return await future\n           ^^^^^^^^^^^^\n  File \"C:\\Users\\GOWRI SIMHA\\OneDrive\\Desktop\\food-delivery\\venv\\Lib\\site-packages\\anyio\\_backends\\_asyncio.py\", line 1100, in run\n    result = context.run(func, *args)\n  File \"C:\\Users\\GOWRI SIMHA\\OneDrive\\Desktop\\food-delivery\\venv\\Lib\\site-packages\\fastapi\\telemetry\\_api.py\", line 240, in _run_sync_endpoint\n    return function(**arguments)\n  File \"C:\\Users\\GOWRI SIMHA\\OneDrive\\Desktop\\food-delivery\\orders.py\", line 85, in place_order\n    discount = DISCOUNTS[request.restaurant_id]\n               ~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^\nKeyError: 3"
+      },
+      {
+        "timestamp": "2026-10-09T07:47:18.985601+00:00",
+        "level": "ERROR",
+        "service": "food-app",
+        "module": "main",
+        "request_id": "2949b001",
+        "message": "Unhandled error",
+        "method": "POST",
+        "path": "/orders",
+        "status": 500,
+        "duration_ms": 3.7,
+        "error": "ead\n    return await future\n           ^^^^^^^^^^^^\n  File \"C:\\Users\\GOWRI SIMHA\\OneDrive\\Desktop\\food-delivery\\venv\\Lib\\site-packages\\anyio\\_backends\\_asyncio.py\", line 1100, in run\n    result = context.run(func, *args)\n  File \"C:\\Users\\GOWRI SIMHA\\OneDrive\\Desktop\\food-delivery\\venv\\Lib\\site-packages\\fastapi\\telemetry\\_api.py\", line 240, in _run_sync_endpoint\n    return function(**arguments)\n  File \"C:\\Users\\GOWRI SIMHA\\OneDrive\\Desktop\\food-delivery\\orders.py\", line 85, in place_order\n    discount = DISCOUNTS[request.restaurant_id]\n               ~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^\nKeyError: 3"
+      },
+      {
+        "timestamp": "2026-10-09T07:47:26.694469+00:00",
+        "level": "ERROR",
+        "service": "food-app",
+        "module": "main",
+        "request_id": "049c7f0b",
+        "message": "Unhandled error",
+        "method": "POST",
+        "path": "/orders",
+        "status": 500,
+        "duration_ms": 3.8,
+        "error": "ead\n    return await future\n           ^^^^^^^^^^^^\n  File \"C:\\Users\\GOWRI SIMHA\\OneDrive\\Desktop\\food-delivery\\venv\\Lib\\site-packages\\anyio\\_backends\\_asyncio.py\", line 1100, in run\n    result = context.run(func, *args)\n  File \"C:\\Users\\GOWRI SIMHA\\OneDrive\\Desktop\\food-delivery\\venv\\Lib\\site-packages\\fastapi\\telemetry\\_api.py\", line 240, in _run_sync_endpoint\n    return function(**arguments)\n  File \"C:\\Users\\GOWRI SIMHA\\OneDrive\\Desktop\\food-delivery\\orders.py\", line 85, in place_order\n    discount = DISCOUNTS[request.restaurant_id]\n               ~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^\nKeyError: 3"
+      }
+    ]
+  }
+}

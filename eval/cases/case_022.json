@@ -1,0 +1,110 @@
+{
+  "case": 22,
+  "scenario": "trap_rollback_then_gateway",
+  "expected_category": "payment_gateway_outage",
+  "expected_severity": "SEV1",
+  "detected": true,
+  "seconds_to_detect": 15.1,
+  "evidence": {
+    "detected_at": "2026-10-09T08:25:25.854184+00:00",
+    "window_seconds": 30,
+    "problems": [
+      "High server error rate: 8% (3 of 40 requests)",
+      "High latency: p95 is 3019.1 ms"
+    ],
+    "health": {
+      "requests": 40,
+      "server_errors": 3,
+      "client_errors": 1,
+      "server_error_rate": 0.075,
+      "p50_latency_ms": 5.2,
+      "p95_latency_ms": 3019.1,
+      "endpoints": {
+        "GET /restaurants/{id}/menu": {
+          "requests": 6,
+          "server_errors": 0,
+          "p95_latency_ms": 10.9
+        },
+        "GET /restaurants": {
+          "requests": 15,
+          "server_errors": 0,
+          "p95_latency_ms": 7.2
+        },
+        "POST /orders": {
+          "requests": 11,
+          "server_errors": 3,
+          "p95_latency_ms": 3020.5
+        },
+        "GET /orders/{id}/track": {
+          "requests": 8,
+          "server_errors": 0,
+          "p95_latency_ms": 5.2
+        }
+      }
+    },
+    "top_errors": [
+      {
+        "error": "ConnectTimeout: gateway did not respond within 3s",
+        "count": 3
+      }
+    ],
+    "recent_deployments": [
+      {
+        "time": "2026-10-09T08:15:27.602534+00:00",
+        "message": "Rollback completed",
+        "version": "1.0.0",
+        "change": null
+      },
+      {
+        "time": "2026-10-09T08:24:45.698483+00:00",
+        "message": "Deployment completed",
+        "version": "1.1.0",
+        "change": "Added restaurant discounts"
+      },
+      {
+        "time": "2026-10-09T08:24:55.717279+00:00",
+        "message": "Rollback completed",
+        "version": "1.0.0",
+        "change": null
+      }
+    ],
+    "sample_error_logs": [
+      {
+        "timestamp": "2026-10-09T08:25:14.524334+00:00",
+        "level": "ERROR",
+        "service": "food-app",
+        "module": "payments",
+        "request_id": "f23bf108",
+        "message": "Payment gateway request failed",
+        "order_id": 2287,
+        "amount": 100,
+        "gateway": "razorpay-sim",
+        "error": "ConnectTimeout: gateway did not respond within 3s"
+      },
+      {
+        "timestamp": "2026-10-09T08:25:18.449367+00:00",
+        "level": "ERROR",
+        "service": "food-app",
+        "module": "payments",
+        "request_id": "b1c35974",
+        "message": "Payment gateway request failed",
+        "order_id": 2287,
+        "amount": 80,
+        "gateway": "razorpay-sim",
+        "error": "ConnectTimeout: gateway did not respond within 3s"
+      },
+      {
+        "timestamp": "2026-10-09T08:25:25.318806+00:00",
+        "level": "ERROR",
+        "service": "food-app",
+        "module": "payments",
+        "request_id": "2118715a",
+        "message": "Payment gateway request failed",
+        "order_id": 2287,
+        "amount": 1170,
+        "gateway": "razorpay-sim",
+        "error": "ConnectTimeout: gateway did not respond within 3s"
+      }
+    ]
+  }
+}

@@ -1,0 +1,91 @@
+{
+  "case": 1,
+  "scenario": "payment_gateway_down",
+  "expected_category": "payment_gateway_outage",
+  "expected_severity": "SEV1",
+  "detected": true,
+  "seconds_to_detect": 20.1,
+  "evidence": {
+    "detected_at": "2026-10-09T07:31:28.572990+00:00",
+    "window_seconds": 30,
+    "problems": [
+      "High server error rate: 8% (3 of 36 requests)",
+      "High latency: p95 is 3017.2 ms"
+    ],
+    "health": {
+      "requests": 36,
+      "server_errors": 3,
+      "client_errors": 2,
+      "server_error_rate": 0.083,
+      "p50_latency_ms": 5.3,
+      "p95_latency_ms": 3017.2,
+      "endpoints": {
+        "GET /orders/{id}/track": {
+          "requests": 6,
+          "server_errors": 0,
+          "p95_latency_ms": 5.7
+        },
+        "GET /restaurants": {
+          "requests": 12,
+          "server_errors": 0,
+          "p95_latency_ms": 5.0
+        },
+        "GET /restaurants/{id}/menu": {
+          "requests": 9,
+          "server_errors": 0,
+          "p95_latency_ms": 9.4
+        },
+        "POST /orders": {
+          "requests": 9,
+          "server_errors": 3,
+          "p95_latency_ms": 3019.3
+        }
+      }
+    },
+    "top_errors": [
+      {
+        "error": "ConnectTimeout: gateway did not respond within 3s",
+        "count": 3
+      }
+    ],
+    "recent_deployments": [],
+    "sample_error_logs": [
+      {
+        "timestamp": "2026-10-09T07:31:12.483892+00:00",
+        "level": "ERROR",
+        "service": "food-app",
+        "module": "payments",
+        "request_id": "4f50c17d",
+        "message": "Payment gateway request failed",
+        "order_id": 1780,
+        "amount": 897,
+        "gateway": "razorpay-sim",
+        "error": "ConnectTimeout: gateway did not respond within 3s"
+      },
+      {
+        "timestamp": "2026-10-09T07:31:19.170216+00:00",
+        "level": "ERROR",
+        "service": "food-app",
+        "module": "payments",
+        "request_id": "58dee91b",
+        "message": "Payment gateway request failed",
+        "order_id": 1780,
+        "amount": 1155,
+        "gateway": "razorpay-sim",
+        "error": "ConnectTimeout: gateway did not respond within 3s"
+      },
+      {
+        "timestamp": "2026-10-09T07:31:24.819092+00:00",
+        "level": "ERROR",
+        "service": "food-app",
+        "module": "payments",
+        "request_id": "190b68fe",
+        "message": "Payment gateway request failed",
+        "order_id": 1780,
+        "amount": 230,
+        "gateway": "razorpay-sim",
+        "error": "ConnectTimeout: gateway did not respond within 3s"
+      }
+    ]
+  }
+}

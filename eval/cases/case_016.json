@@ -1,0 +1,85 @@
+{
+  "case": 16,
+  "scenario": "slow_database",
+  "expected_category": "database_slow",
+  "expected_severity": "SEV2",
+  "detected": true,
+  "seconds_to_detect": 10.0,
+  "evidence": {
+    "detected_at": "2026-10-09T08:13:01.825173+00:00",
+    "window_seconds": 30,
+    "problems": [
+      "High latency: p95 is 1692.8 ms"
+    ],
+    "health": {
+      "requests": 42,
+      "server_errors": 0,
+      "client_errors": 2,
+      "server_error_rate": 0.0,
+      "p50_latency_ms": 3.0,
+      "p95_latency_ms": 1692.8,
+      "endpoints": {
+        "GET /restaurants/{id}/menu": {
+          "requests": 9,
+          "server_errors": 0,
+          "p95_latency_ms": 4.0
+        },
+        "GET /restaurants": {
+          "requests": 17,
+          "server_errors": 0,
+          "p95_latency_ms": 1692.8
+        },
+        "GET /orders/{id}/track": {
+          "requests": 7,
+          "server_errors": 0,
+          "p95_latency_ms": 4.5
+        },
+        "POST /orders": {
+          "requests": 9,
+          "server_errors": 0,
+          "p95_latency_ms": 2714.9
+        }
+      }
+    },
+    "top_errors": [],
+    "recent_deployments": [
+      {
+        "time": "2026-10-09T08:08:10.687370+00:00",
+        "message": "Deployment completed",
+        "version": "1.1.0",
+        "change": "Added restaurant discounts"
+      },
+      {
+        "time": "2026-10-09T08:08:20.715286+00:00",
+        "message": "Rollback completed",
+        "version": "1.0.0",
+        "change": null
+      },
+      {
+        "time": "2026-10-09T08:09:26.002191+00:00",
+        "message": "Deployment completed",
+        "version": "1.1.0",
+        "change": "Added restaurant discounts"
+      },
+      {
+        "time": "2026-10-09T08:09:51.091040+00:00",
+        "message": "Rollback completed",
+        "version": "1.0.0",
+        "change": null
+      },
+      {
+        "time": "2026-10-09T08:10:26.243376+00:00",
+        "message": "Deployment completed",
+        "version": "1.1.0",
+        "change": "Added restaurant discounts"
+      },
+      {
+        "time": "2026-10-09T08:10:36.248863+00:00",
+        "message": "Rollback completed",
+        "version": "1.0.0",
+        "change": null
+      }
+    ],
+    "sample_error_logs": []
+  }
+}

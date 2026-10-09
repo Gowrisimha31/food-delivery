@@ -1,0 +1,128 @@
+{
+  "case": 30,
+  "scenario": "trap_rollback_then_gateway",
+  "expected_category": "payment_gateway_outage",
+  "expected_severity": "SEV1",
+  "detected": true,
+  "seconds_to_detect": 25.2,
+  "evidence": {
+    "detected_at": "2026-10-09T08:32:52.942045+00:00",
+    "window_seconds": 30,
+    "problems": [
+      "High server error rate: 7% (3 of 43 requests)",
+      "High latency: p95 is 3015.9 ms"
+    ],
+    "health": {
+      "requests": 43,
+      "server_errors": 3,
+      "client_errors": 1,
+      "server_error_rate": 0.07,
+      "p50_latency_ms": 5.2,
+      "p95_latency_ms": 3015.9,
+      "endpoints": {
+        "GET /restaurants/{id}/menu": {
+          "requests": 19,
+          "server_errors": 0,
+          "p95_latency_ms": 17.5
+        },
+        "GET /orders/{id}/track": {
+          "requests": 4,
+          "server_errors": 0,
+          "p95_latency_ms": 8.2
+        },
+        "GET /restaurants": {
+          "requests": 14,
+          "server_errors": 0,
+          "p95_latency_ms": 5.3
+        },
+        "POST /orders": {
+          "requests": 6,
+          "server_errors": 3,
+          "p95_latency_ms": 3019.6
+        }
+      }
+    },
+    "top_errors": [
+      {
+        "error": "ConnectTimeout: gateway did not respond within 3s",
+        "count": 3
+      }
+    ],
+    "recent_deployments": [
+      {
+        "time": "2026-10-09T08:24:45.698483+00:00",
+        "message": "Deployment completed",
+        "version": "1.1.0",
+        "change": "Added restaurant discounts"
+      },
+      {
+        "time": "2026-10-09T08:24:55.717279+00:00",
+        "message": "Rollback completed",
+        "version": "1.0.0",
+        "change": null
+      },
+      {
+        "time": "2026-10-09T08:31:17.419163+00:00",
+        "message": "Deployment completed",
+        "version": "1.1.0",
+        "change": "Added restaurant discounts"
+      },
+      {
+        "time": "2026-10-09T08:31:27.476745+00:00",
+        "message": "Rollback completed",
+        "version": "1.0.0",
+        "change": null
+      },
+      {
+        "time": "2026-10-09T08:32:02.664634+00:00",
+        "message": "Deployment completed",
+        "version": "1.1.0",
+        "change": "Added restaurant discounts"
+      },
+      {
+        "time": "2026-10-09T08:32:12.690225+00:00",
+        "message": "Rollback completed",
+        "version": "1.0.0",
+        "change": null
+      }
+    ],
+    "sample_error_logs": [
+      {
+        "timestamp": "2026-10-09T08:32:39.151294+00:00",
+        "level": "ERROR",
+        "service": "food-app",
+        "module": "payments",
+        "request_id": "16a172d5",
+        "message": "Payment gateway request failed",
+        "order_id": 2425,
+        "amount": 428,
+        "gateway": "razorpay-sim",
+        "error": "ConnectTimeout: gateway did not respond within 3s"
+      },
+      {
+        "timestamp": "2026-10-09T08:32:44.129918+00:00",
+        "level": "ERROR",
+        "service": "food-app",
+        "module": "payments",
+        "request_id": "9e3c3d59",
+        "message": "Payment gateway request failed",
+        "order_id": 2425,
+        "amount": 210,
+        "gateway": "razorpay-sim",
+        "error": "ConnectTimeout: gateway did not respond within 3s"
+      },
+      {
+        "timestamp": "2026-10-09T08:32:49.707736+00:00",
+        "level": "ERROR",
+        "service": "food-app",
+        "module": "payments",
+        "request_id": "a4463f64",
+        "message": "Payment gateway request failed",
+        "order_id": 2425,
+        "amount": 897,
+        "gateway": "razorpay-sim",
+        "error": "ConnectTimeout: gateway did not respond within 3s"
+      }
+    ]
+  }
+}

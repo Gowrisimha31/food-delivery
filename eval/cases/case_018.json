@@ -1,0 +1,131 @@
+{
+  "case": 18,
+  "scenario": "db_connections_exhausted",
+  "expected_category": "db_connection_exhaustion",
+  "expected_severity": "SEV1",
+  "detected": true,
+  "seconds_to_detect": 10.0,
+  "evidence": {
+    "detected_at": "2026-10-09T08:14:32.238320+00:00",
+    "window_seconds": 30,
+    "problems": [
+      "High server error rate: 8% (3 of 40 requests)",
+      "High latency: p95 is 2002.7 ms"
+    ],
+    "health": {
+      "requests": 40,
+      "server_errors": 3,
+      "client_errors": 0,
+      "server_error_rate": 0.075,
+      "p50_latency_ms": 2.8,
+      "p95_latency_ms": 2002.7,
+      "endpoints": {
+        "POST /orders": {
+          "requests": 9,
+          "server_errors": 1,
+          "p95_latency_ms": 2003.3
+        },
+        "GET /restaurants/{id}/menu": {
+          "requests": 15,
+          "server_errors": 1,
+          "p95_latency_ms": 2001.9
+        },
+        "GET /restaurants": {
+          "requests": 8,
+          "server_errors": 0,
+          "p95_latency_ms": 2.6
+        },
+        "GET /orders/{id}/track": {
+          "requests": 8,
+          "server_errors": 1,
+          "p95_latency_ms": 2002.7
+        }
+      }
+    },
+    "top_errors": [
+      {
+        "error": "sqlalchemy.exc.TimeoutError: QueuePool limit of size 5 overflow 10 reached, connection timed out, timeout 30.00",
+        "count": 3
+      }
+    ],
+    "recent_deployments": [
+      {
+        "time": "2026-10-09T08:08:10.687370+00:00",
+        "message": "Deployment completed",
+        "version": "1.1.0",
+        "change": "Added restaurant discounts"
+      },
+      {
+        "time": "2026-10-09T08:08:20.715286+00:00",
+        "message": "Rollback completed",
+        "version": "1.0.0",
+        "change": null
+      },
+      {
+        "time": "2026-10-09T08:09:26.002191+00:00",
+        "message": "Deployment completed",
+        "version": "1.1.0",
+        "change": "Added restaurant discounts"
+      },
+      {
+        "time": "2026-10-09T08:09:51.091040+00:00",
+        "message": "Rollback completed",
+        "version": "1.0.0",
+        "change": null
+      },
+      {
+        "time": "2026-10-09T08:10:26.243376+00:00",
+        "message": "Deployment completed",
+        "version": "1.1.0",
+        "change": "Added restaurant discounts"
+      },
+      {
+        "time": "2026-10-09T08:10:36.248863+00:00",
+        "message": "Rollback completed",
+        "version": "1.0.0",
+        "change": null
+      }
+    ],
+    "sample_error_logs": [
+      {
+        "timestamp": "2026-10-09T08:14:24.582660+00:00",
+        "level": "ERROR",
+        "service": "food-app",
+        "module": "main",
+        "request_id": "c73a3d78",
+        "message": "Unhandled error",
+        "method": "POST",
+        "path": "/orders",
+        "status": 500,
+        "duration_ms": 2003.3,
+        "error": "uture\n           ^^^^^^^^^^^^\n  File \"C:\\Users\\GOWRI SIMHA\\OneDrive\\Desktop\\food-delivery\\venv\\Lib\\site-packages\\anyio\\_backends\\_asyncio.py\", line 1100, in run\n    result = context.run(func, *args)\n  File \"C:\\Users\\GOWRI SIMHA\\AppData\\Local\\Programs\\Python\\Python313\\Lib\\contextlib.py\", line 141, in __enter__\n    return next(self.gen)\n  File \"C:\\Users\\GOWRI SIMHA\\OneDrive\\Desktop\\food-delivery\\database.py\", line 28, in get_session\n    raise PoolTimeoutError(\n    ...<2 lines>...\n    )\nsqlalchemy.exc.TimeoutError: QueuePool limit of size 5 overflow 10 reached, connection timed out, timeout 30.00"
+      },
+      {
+        "timestamp": "2026-10-09T08:14:27.110365+00:00",
+        "level": "ERROR",
+        "service": "food-app",
+        "module": "main",
+        "request_id": "8713b13b",
+        "message": "Unhandled error",
+        "method": "GET",
+        "path": "/restaurants/1/menu",
+        "status": 500,
+        "duration_ms": 2001.9,
+        "error": "uture\n           ^^^^^^^^^^^^\n  File \"C:\\Users\\GOWRI SIMHA\\OneDrive\\Desktop\\food-delivery\\venv\\Lib\\site-packages\\anyio\\_backends\\_asyncio.py\", line 1100, in run\n    result = context.run(func, *args)\n  File \"C:\\Users\\GOWRI SIMHA\\AppData\\Local\\Programs\\Python\\Python313\\Lib\\contextlib.py\", line 141, in __enter__\n    return next(self.gen)\n  File \"C:\\Users\\GOWRI SIMHA\\OneDrive\\Desktop\\food-delivery\\database.py\", line 28, in get_session\n    raise PoolTimeoutError(\n    ...<2 lines>...\n    )\nsqlalchemy.exc.TimeoutError: QueuePool limit of size 5 overflow 10 reached, connection timed out, timeout 30.00"
+      },
+      {
+        "timestamp": "2026-10-09T08:14:29.737811+00:00",
+        "level": "ERROR",
+        "service": "food-app",
+        "module": "main",
+        "request_id": "9747a221",
+        "message": "Unhandled error",
+        "method": "GET",
+        "path": "/orders/2204/track",
+        "status": 500,
+        "duration_ms": 2002.7,
+        "error": "uture\n           ^^^^^^^^^^^^\n  File \"C:\\Users\\GOWRI SIMHA\\OneDrive\\Desktop\\food-delivery\\venv\\Lib\\site-packages\\anyio\\_backends\\_asyncio.py\", line 1100, in run\n    result = context.run(func, *args)\n  File \"C:\\Users\\GOWRI SIMHA\\AppData\\Local\\Programs\\Python\\Python313\\Lib\\contextlib.py\", line 141, in __enter__\n    return next(self.gen)\n  File \"C:\\Users\\GOWRI SIMHA\\OneDrive\\Desktop\\food-delivery\\database.py\", line 28, in get_session\n    raise PoolTimeoutError(\n    ...<2 lines>...\n    )\nsqlalchemy.exc.TimeoutError: QueuePool limit of size 5 overflow 10 reached, connection timed out, timeout 30.00"
+      }
+    ]
+  }
+}

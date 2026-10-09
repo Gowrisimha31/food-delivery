@@ -1,0 +1,73 @@
+{
+  "case": 6,
+  "scenario": "slow_database",
+  "expected_category": "database_slow",
+  "expected_severity": "SEV2",
+  "detected": true,
+  "seconds_to_detect": 10.0,
+  "evidence": {
+    "detected_at": "2026-10-09T07:36:47.070247+00:00",
+    "window_seconds": 30,
+    "problems": [
+      "High latency: p95 is 2124.2 ms"
+    ],
+    "health": {
+      "requests": 39,
+      "server_errors": 0,
+      "client_errors": 2,
+      "server_error_rate": 0.0,
+      "p50_latency_ms": 4.8,
+      "p95_latency_ms": 2124.2,
+      "endpoints": {
+        "GET /restaurants": {
+          "requests": 14,
+          "server_errors": 0,
+          "p95_latency_ms": 1924.8
+        },
+        "GET /restaurants/{id}/menu": {
+          "requests": 10,
+          "server_errors": 0,
+          "p95_latency_ms": 5.8
+        },
+        "GET /orders/{id}/track": {
+          "requests": 4,
+          "server_errors": 0,
+          "p95_latency_ms": 2648.4
+        },
+        "POST /orders": {
+          "requests": 11,
+          "server_errors": 0,
+          "p95_latency_ms": 2124.2
+        }
+      }
+    },
+    "top_errors": [],
+    "recent_deployments": [
+      {
+        "time": "2026-10-09T07:32:04.467031+00:00",
+        "message": "Deployment completed",
+        "version": "1.1.0",
+        "change": "Added restaurant discounts"
+      },
+      {
+        "time": "2026-10-09T07:32:14.513250+00:00",
+        "message": "Rollback completed",
+        "version": "1.0.0",
+        "change": null
+      },
+      {
+        "time": "2026-10-09T07:34:05.417559+00:00",
+        "message": "Deployment completed",
+        "version": "1.1.0",
+        "change": "Added restaurant discounts"
+      },
+      {
+        "time": "2026-10-09T07:34:51.070064+00:00",
+        "message": "Rollback completed",
+        "version": "1.0.0",
+        "change": null
+      }
+    ],
+    "sample_error_logs": []
+  }
+}
